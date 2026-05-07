@@ -1,11 +1,11 @@
-#include<stdio.h>
+#include<iostream>
 
-int main(int argc, char** argv)
+int main(int agrc, char** argv)
 {
-	printf("Hello, World! %d\n", argc);
+	using namespace std;
 
-	for (int i = 0; i < argc; ++i)
-		printf("%s\n", argv[i]);
+	printf("Hello, World!\n"); // C-style output
 
+	std::cout << "Hello, World!"; // C++-style output, more type-safe and extensible
 	return 0;
 }
