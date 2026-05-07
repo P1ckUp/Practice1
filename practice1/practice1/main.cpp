@@ -1,5 +1,3 @@
-#include<iostream>
-#include<string>
 /*
 int main(int agrc, char** argv)
 {
@@ -19,6 +17,8 @@ int main(int agrc, char** argv)
 	*/
 // =======================================================
 /*
+#include<iostream>
+#include<string>
 void swap(int& a, int& b)
 {
 	int temp = a;
@@ -34,6 +34,7 @@ int main()
 	std::cout<<"before swap: a = "<<a<<", b = "<<b<<std::endl;
 }
 */
+/*
 int main()
 {
 	int age = 10;
@@ -46,3 +47,40 @@ int main()
 
 	return 0;
 }
+*/
+//사용자로부터 0보다 큰 정수들의 목록을 입력받는 프로그램을 작성하시오.
+//사용자가 종료를 의미하는 값인 0을 입력할 때까지 계속 입력받는다.
+//종료 값(sentinel)인 0이 입력되면, 프로그램은 입력된 값들 중에서 가장 큰 값을 출력해야 한다.
+#include<cstdio>
+#include<iostream>
+int main()
+{
+	int a = 0;
+	int max = 0;
+
+	while (true)
+	{
+		std::cout << "값을 입력하세요.: ";
+		std::cin >> a;
+		if (a == 0)
+		{
+			break;
+		}
+		else if (a > max)
+		{
+			max = a;
+		}
+		std::cout << "biggest value is: " << max<<std::endl;
+	}return 0;
+
+return 0;
+}
+
+
+
+
+
+
+
+
+
