@@ -81,6 +81,7 @@ return 0;
 
 //컴파일 될 수 있도록 코드를 작성 및 수정
 //성공적으로 프린트(45가 나와야됨)
+/*
 #include<cstdio>
 #include<iostream>
 
@@ -131,3 +132,105 @@ int main(void)
 
 	return 0;
 }
+*/
+/*
+k가 들어간 수 출력하기
+사용자에게 maxNum과 k를 입력 받습니다.
+
+조건
+maxNum은 0보다 크다.
+k는 0~9 한자리 수.
+
+1 이상 maxNum 이하 수 중에서 k가 들어간 수는 모두 출력하기
+ex) maxNum = 15, k = 5 일 때 출력 5 15
+*/
+
+/*
+#include<iostream>
+
+bool HasDigit(int num, int k)
+{
+	int l;
+
+	while (num > 0)
+	{
+		l = num % 10;
+
+		if (l == k)
+		{
+			return true;
+		}
+			num = num / 10;
+	}
+	return false;
+}
+
+int main(void)
+{
+	int maxNum = 0;
+	int k = 0;
+	int num;
+
+	while (maxNum <= 0)
+	{
+		std::cout << "maxNum을 입력하세요\n";
+		std::cin >> maxNum;
+		if (maxNum <= 0)
+		{
+			std::cout << "값이 잘못되었습니다. 다시 입력하세요.\n";
+		}
+	}
+
+	do
+	{
+		std::cout << "k를 입력하세요\n";
+		std::cin >> k;
+		
+		if (k >= 10 || k < 0)
+		{
+			std::cout << "값이 잘못되었습니다. 다시 입력하세요.\n";
+		}
+	} while (k >= 10 || k < 0);
+
+	std::cout << maxNum << " " << k << "\n";
+
+	for (int num = 0; num <= maxNum; num++)
+	{
+		if (HasDigit(num, k))
+			std::cout << num << "\n";
+	}
+
+	return 0;
+}
+*/
+
+/*
+구구단 출력
+
+사용자에게 구구단 몇 단까지 출력 할 것인지 입력 받고 구구단 출력하기.
+
+ex) 사용자 입력 값 = 7,
+1 7 14 21 28 35 42 49 56 63
+
+ex) 사용자 입력 값 = 11,
+1 11 22 33 44 55 66 77 88 99
+*/
+#include<iostream>
+int main(void)
+{
+	int i = 0;
+	int j = 0;
+	int k = 0;
+
+	std::cout << "출력할 구구단의 단을 입력하세요.\n";
+	std::cin >> i;
+
+	for(j = 1; j <= 9; ++j)
+	{
+		k = j * i;
+		std::cout << " \n" << k;
+	}
+
+	return 0;
+}
+//구구단 구하는법: 짝수 홀수 가르기. >> 정수 % 2 == 0;
