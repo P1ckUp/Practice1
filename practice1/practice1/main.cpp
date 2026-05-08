@@ -215,6 +215,8 @@ ex) 사용자 입력 값 = 7,
 ex) 사용자 입력 값 = 11,
 1 11 22 33 44 55 66 77 88 99
 */
+
+/*
 #include<iostream>
 int main(void)
 {
@@ -234,3 +236,55 @@ int main(void)
 	return 0;
 }
 //구구단 구하는법: 짝수 홀수 가르기. >> 정수 % 2 == 0;
+*/
+
+
+/*
+숫자 맞추기 게임
+프로그램이 시작하면 랜덤으로 숫자를 하나 정한다.
+사용자가 그 수를 맞추는 게임.
+*/
+//(rand / srand) C 스타일 <stdlib.h> 사용, c++에선 #include <random> 사용
+//	srand(time(NULL)); //현재 시간을 기준으로 랜덤 시작점 설정
+#include<iostream>
+#include<stdlib.h>
+
+int main(void)
+{
+
+	
+	int i = rand() % 100;
+	int k = 0;
+
+	do
+	{
+		std::cout << "0에서 100 사이 정답을 찾으시오.\n";
+		std::cin >> k;
+
+		if(k > 99 || k < 0)
+		{
+			std::cout << "잘못된 값입니다. 다시 입력하세요.\n";
+		}
+	} while (k > 99 || k < 0);
+
+	while (k != i)
+	{
+		if (k > i)
+		{
+			std::cout << "k는 i보다 큽니다. 다시 입력해주세요.\n";
+			std::cin >> k;
+
+		}			
+		else if (k < i)
+		{
+				std::cout << "k는 i보다 작습니다. 다시 입력해주세요.\n";
+				std::cin >> k;
+		}
+		else
+		{
+			std::cout << "정답입니다.\n";
+		}
+	}
+
+	return 0;
+}
