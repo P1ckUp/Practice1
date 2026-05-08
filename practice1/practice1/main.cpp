@@ -354,6 +354,8 @@ int main(void)
 //
 //	printBoard(board);
 //}
+
+/*
 #include <iostream>
 
 bool WinnerCheck(char Board[3][3], char p)
@@ -504,5 +506,21 @@ int main(void)
 			IsPlayerATurn = !IsPlayerATurn;
 		}
 	
+
+}
+*/
+
+#include <fstream>
+
+int main(void)
+{
+	std::fstream fs;
+
+	fs.open("yourname.txt");
+
+	if (fs.is_open())
+	{
+
+	}
 
 }
