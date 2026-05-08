@@ -246,6 +246,8 @@ int main(void)
 */
 //(rand / srand) C 스타일 <stdlib.h> 사용, c++에선 #include <random> 사용
 //	srand(time(NULL)); //현재 시간을 기준으로 랜덤 시작점 설정
+
+/*
 #include<iostream>
 #include<stdlib.h>
 
@@ -287,4 +289,220 @@ int main(void)
 	}
 
 	return 0;
+}
+
+*/
+
+//틱택토 게임
+
+//#include <iostream>
+//
+//void printBoard(char board[])
+//{
+//	for (int i = 0; i < 9; ++i)
+//	{
+//		if (i / 3 == 0)
+//			std::cout << std::endl;
+//		std::cout << board[i];
+//	}
+//
+//	//for (int row = 0; row < 3; ++row)
+//	//{
+//	//    std::cout << "|";
+//	//    for (int col = 0; col < 3; ++col)
+//	//    {
+//	//        int index = 0; // Todo
+//	//        std::cout << board[index] << "|";
+//	//    }
+//	//    std::cout << std::endl;
+//	//}
+////}
+//
+//
+//int main(void)
+//{
+//	char playerA = 'O';
+//	char playerB = 'X';
+//
+//	char board[9] = {};
+//	for (int i = 0; i < 9; ++i)
+//	{
+//		board[i] = ' ';
+//	}
+//	printBoard(board);
+//
+//	bool isPlayerATurn = true;
+//
+//	std::cout << playerA << "'s Turn!!\n";
+//	if (isPlayerATurn)
+//	{
+//		std::cout << "Pick the row!\n";
+//	}
+//	int pickedRow = -1;
+//	std::cin >> pickedRow;
+//
+//	if (isPlayerATurn)
+//	{
+//		std::cout << "Pick the column!\n";
+//	}
+//	int pickedCol = -1;
+//	std::cin >> pickedCol;
+//
+//	// Todo2 check the boundary (0~2, 0~2)
+//
+//	board[pickedRow] = playerA;
+//
+//	printBoard(board);
+//}
+#include <iostream>
+
+bool WinnerCheck(char Board[3][3], char p)
+{
+	return
+		(Board[0][0] == p && Board[0][1] == p && Board[0][2] == p) ||
+		(Board[1][0] == p && Board[1][1] == p && Board[1][2] == p) ||
+		(Board[2][0] == p && Board[2][1] == p && Board[2][2] == p) ||
+		(Board[0][0] == p && Board[1][1] == p && Board[2][2] == p) ||
+		(Board[2][0] == p && Board[1][1] == p && Board[0][2] == p) ||
+		(Board[0][0] == p && Board[1][0] == p && Board[2][0] == p) ||
+		(Board[0][1] == p && Board[1][1] == p && Board[2][1] == p) ||
+		(Board[0][2] == p && Board[1][2] == p && Board[2][2] == p);
+}
+
+bool DrawCheck(char Board[3][3])
+{
+	for (int col = 0; col < 3; ++col)
+	{
+		for (int row = 0; row < 3; ++row)
+		{
+			if (Board[col][row] == ' ')
+			return false;
+		}
+	} 
+	return true;
+}
+
+
+void PrintBoard(char Board[3][3])
+{
+	for (int col = 0; col < 3; ++col)
+	{
+		for (int row = 0; row < 3; ++row)
+		{
+			std::cout << Board[col][row] << " | ";
+		} 
+		std::cout << std::endl;
+	}
+}
+
+
+void GetUserInput(int& col, int& row)
+{
+	do
+	{
+		
+		std::cout << "col 입력하세요.\n";
+		std::cin >> col;
+
+		std::cout << "row 입력하세요.\n";
+		std::cin >> row;
+		if((row > 2 || row < 0) || (col > 2 || col < 0))
+		{
+			std::cout << "Wrong location. Please do again.\n";
+		}
+	} while ((row > 2 || row < 0) || (col > 2 || col < 0));
+
+}
+//❌ PrintBoard가 보드를 만들면 안 됨
+//❌ PrintBoard가 값을 바꾸면 안 됨
+
+int main(void)
+{
+	char PlayerA = 'O';
+	char PlayerB = 'X';
+
+	char Board[3][3];
+
+	for (int col = 0; col < 3; ++col)
+	{
+		for (int row = 0; row < 3; ++row)
+		{
+			Board[col][row] = ' ';
+		}
+		std::cout << std::endl;
+	}
+
+	PrintBoard(Board);
+
+	int row = 0;
+	int col = 0;
+
+	bool IsPlayerATurn = true;
+
+
+		while (true)
+		{
+			if (IsPlayerATurn)
+			{
+				std::cout << "A's Turn. choice the location (0~2)\n";
+			}
+			else
+			{
+				std::cout << "B's Turn. choice the location (0~2)\n";
+			}
+			//std::cin >> row;
+			//std::cin >> col;
+			//while ((row > 2 || row < 0) || (col > 2 || col < 0))
+			//{
+			//	std::cout << "Wrong location. Please do again";
+			//}
+
+			GetUserInput(row, col);
+
+			if (IsPlayerATurn)
+			{
+				if (Board[col][row] != ' ')
+				{
+					std::cout << "This location is already used. Please do again\n";
+				}
+				else
+					Board[col][row] = 'O';
+				PrintBoard(Board);
+				if (WinnerCheck(Board, 'O'))
+				{
+					std::cout << "A is winner.\n";
+					break;
+				}
+				if(DrawCheck(Board))
+				{
+					std::cout << "Game is Draw\n";
+					break;
+				}
+			}
+			
+
+			else
+			{
+				if (Board[col][row] != ' ')
+				{
+					std::cout << "This location is already used. Please do again\n";
+				}
+				else
+					Board[col][row] = 'X';
+				PrintBoard(Board);
+				if (WinnerCheck(Board, 'X'))
+				{
+					std::cout << "B is winner.\n";
+					break;
+				}
+				if (DrawCheck(Board))
+				{
+					std::cout << "Game is Draw\n";
+					break;
+				}
+			}
+			IsPlayerATurn = !IsPlayerATurn;
+		}
+	
+
 }
