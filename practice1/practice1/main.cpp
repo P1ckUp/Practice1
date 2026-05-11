@@ -533,68 +533,68 @@ int main(void)
 //string 단어 갯수 세기 X
 //파일 경로, 확장명 파싱 X
 
-//#include <iostream>
-//#include <string>
-//
-//struct TestCase {
-//	std::string input;
-//	bool expected;
-//};
-//
-//bool hasDuplicate(std::string str)
-//{
-//	for (int i = 0; i < str.length(); ++i) // 문자열의 첫 문자부터 검사를 시작하는 루프
-//	{
-//
-//	}
-//	return false;
-//}
-//
-//int main() {
-//	TestCase tests[20] = {
-//		{"abc", false},
-//		{"hello", true},
-//		{"abcdefga", true},
-//		{"", false},
-//		{"a", false},
-//		{"aa", true},
-//		{"Aa", false},
-//		{"abcdefghijklmnopqrstuvwxyz", false},
-//		{"abcdefghijklmnopqrstuvwxyza", true},
-//		{"apple", true},
-//		{"busan", false},
-//		{"programming", true},
-//		{"112233", true},
-//		{"a1b2c3", false},
-//		{"a b c", true},
-//		{"!@#$%^", false},
-//		{"abcABC", false},
-//		{"abcdea", true},
-//		{"zxywvutsrqponmlkjihgfedcba", false},
-//		{"kkkkkkkk", true}
-//	};
-//
-//
-//	int passTest = 0;
-//
-//	for (int i = 0; i < 20; ++i)
-//	{
-//		TestCase& t = tests[i];
-//		bool result = hasDuplicate(t.input);
-//
-//			if (result == t.expected)
-//			{
-//				passTest++;
-//			}
-//		std::cout << "Input: " << t.input
-//			<< " | Expected: " << t.expected
-//			<< " | Result: " << result
-//			<< (result == t.expected ? " [PASS]" : " [FAIL]")
-//			<< std::endl;
-//	}
-//
-//	std::cout << "Test Result: " << passTest << "/" << 20 << std::endl;
-//}
+#include <iostream>
+#include <string>
+
+struct TestCase {
+	std::string input;
+	bool expected;
+};
+
+bool hasDuplicate(std::string str)
+{
+	for (int i = 0; i < str.length(); ++i) // 문자열의 첫 문자부터 검사를 시작하는 루프
+	{
+
+	}
+	return false;
+}
+
+int main() {
+	TestCase tests[20] = {
+		{"abc", false},
+		{"hello", true},
+		{"abcdefga", true},
+		{"", false},
+		{"a", false},
+		{"aa", true},
+		{"Aa", false},
+		{"abcdefghijklmnopqrstuvwxyz", false},
+		{"abcdefghijklmnopqrstuvwxyza", true},
+		{"apple", true},
+		{"busan", false},
+		{"programming", true},
+		{"112233", true},
+		{"a1b2c3", false},
+		{"a b c", true},
+		{"!@#$%^", false},
+		{"abcABC", false},
+		{"abcdea", true},
+		{"zxywvutsrqponmlkjihgfedcba", false},
+		{"kkkkkkkk", true}
+	};
+
+
+	int passTest = 0;
+
+	for (int i = 0; i < 20; ++i)
+	{
+		TestCase& t = tests[i];
+		bool result = hasDuplicate(t.input);
+
+			if (result == t.expected)
+			{
+				passTest++;
+			}
+		std::cout << "Input: " << t.input
+			<< " | Expected: " << t.expected
+			<< " | Result: " << result
+			<< (result == t.expected ? " [PASS]" : " [FAIL]")
+			<< std::endl;
+	}
+
+	std::cout << "Test Result: " << passTest << "/" << 20 << std::endl;
+}
 
 //#include <iostream>
 //#include <string>
