@@ -510,6 +510,7 @@ int main(void)
 }
 */
 
+/*
 #include <fstream>
 
 int main(void)
@@ -523,4 +524,181 @@ int main(void)
 
 	}
 
+}
+*/
+
+//string 관련 :
+//string에 중복된 alphabet 있는지 체크 O
+//string에서 앞뒤로 space 없애기 X
+//string 단어 갯수 세기 X
+//파일 경로, 확장명 파싱 X
+
+//#include <iostream>
+//#include <string>
+//
+//struct TestCase {
+//	std::string input;
+//	bool expected;
+//};
+//
+//bool hasDuplicate(std::string str)
+//{
+//	for (int i = 0; i < str.length(); ++i) // 문자열의 첫 문자부터 검사를 시작하는 루프
+//	{
+//
+//	}
+//	return false;
+//}
+//
+//int main() {
+//	TestCase tests[20] = {
+//		{"abc", false},
+//		{"hello", true},
+//		{"abcdefga", true},
+//		{"", false},
+//		{"a", false},
+//		{"aa", true},
+//		{"Aa", false},
+//		{"abcdefghijklmnopqrstuvwxyz", false},
+//		{"abcdefghijklmnopqrstuvwxyza", true},
+//		{"apple", true},
+//		{"busan", false},
+//		{"programming", true},
+//		{"112233", true},
+//		{"a1b2c3", false},
+//		{"a b c", true},
+//		{"!@#$%^", false},
+//		{"abcABC", false},
+//		{"abcdea", true},
+//		{"zxywvutsrqponmlkjihgfedcba", false},
+//		{"kkkkkkkk", true}
+//	};
+//
+//
+//	int passTest = 0;
+//
+//	for (int i = 0; i < 20; ++i)
+//	{
+//		TestCase& t = tests[i];
+//		bool result = hasDuplicate(t.input);
+//
+//			if (result == t.expected)
+//			{
+//				passTest++;
+//			}
+//		std::cout << "Input: " << t.input
+//			<< " | Expected: " << t.expected
+//			<< " | Result: " << result
+//			<< (result == t.expected ? " [PASS]" : " [FAIL]")
+//			<< std::endl;
+//	}
+//
+//	std::cout << "Test Result: " << passTest << "/" << 20 << std::endl;
+//}
+
+#include <iostream>
+#include <string>
+#include <cctype>
+
+struct TestCase {
+	std::string input;
+	std::string expected;
+};
+
+std::string trim(const std::string& str)	//trim: 문자열의 앞과 뒤의 공백을 제거하는 함수
+{
+	//isspace 사용
+	size_t start = 0;
+	size_t end = str.length() - 1;	//문자열의 맨 뒤에서부터 해야되기 때문에 문자열의 -1 자리 ( 맨뒤)에서 부터 시작
+	
+	if (str.empty())	//만약 값이 존재않는 0일때(공백) pass
+	return "";
+	
+	//반복문으로 공백 체크
+	while (start < str.length() && isspace((unsigned char)str[start])) 
+	{
+		start++;
+	}
+
+	while (end > start && isspace((unsigned char)str[end]))
+	{
+		end--;
+	}
+
+	if (start == str.length())
+		return "";
+
+	return str.substr(start, end - start + 1);
+}
+
+
+int main() {
+	TestCase tests[] = {
+		// 기본 케이스
+		{"hello", "hello"},
+		{" hello", "hello"},
+		{"hello ", "hello"},
+		{" hello ", "hello"},
+
+		// 공백 여러 개
+		{"   hello", "hello"},
+		{"hello   ", "hello"},
+		{"   hello   ", "hello"},
+
+		// 문자열 사이 공백은 유지
+		{"hello world", "hello world"},
+		{"   hello world   ", "hello world"},
+
+		// 빈 문자열
+		{"", ""},
+
+		// 공백만 있는 경우
+		{" ", ""},
+		{"     ", ""},
+
+		// 탭 포함
+		{"\thello", "hello"},
+		{"hello\t", "hello"},
+		{"\t hello \t", "hello"},
+
+		// 개행 포함
+		{"\nhello", "hello"},
+		{"hello\n", "hello"},
+		{"\n hello \n", "hello"},
+
+		// 여러 종류 whitespace 혼합
+		{" \t\n hello world \n\t ", "hello world"},
+
+		// 특수문자
+		{"   !@#hello$$$   ", "!@#hello$$$"},
+
+		// 한 글자
+		{" a ", "a"},
+
+		// 내부 whitespace 유지 확인
+		{"   a   b   c   ", "a   b   c"}
+	};
+
+	const int numTests = 22;
+
+	int passTest = 0;
+
+	for (int i = 0; i < numTests; ++i)
+	{
+		TestCase& t = tests[i];
+		std::string result = trim(t.input);
+
+		if (result == t.expected)
+		{
+			passTest++;
+		}
+
+		std::cout << "Input: " << t.input
+			<< " | Expected: " << t.expected
+			<< " | Result: " << result
+			<< (result == t.expected ? " [PASS]" : " [FAIL]")
+			<< std::endl;
+	}
+
+	std::cout << "Test Result: " << passTest << "/" << numTests << std::endl;
 }
