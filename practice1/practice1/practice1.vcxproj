@@ -18,6 +18,15 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ocean.h" />
+    <ClInclude Include="PRNG.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ocean-driver.cpp" />
+    <ClCompile Include="ocean.cpp" />
+    <ClCompile Include="PRNG.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -126,13 +135,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Tsunami.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Tsunami.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
