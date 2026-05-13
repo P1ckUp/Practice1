@@ -1,100 +1,76 @@
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <vector>
+#include<algorithm>
 
-//복사생성자
-//parameter 한개 이상 받는 것 생성자
-class Boat
+void PrintVec(const std::vector<int>& nums)
 {
-public:
-	Boat();
-	~Boat();
-
-
-private:
-	int hits;
-	int ID;
-};
-
-
-Boat::Boat() // 메모리 생긴 그 자체를 받으니 반환이 필요 없음
-{
-	int hits = 0;
-	int ID = -1;
-	// -1의 의미는 아이디가 부여되지 않음.
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        std::cout << nums[i] << " " << std::endl;
+    }
 }
 
-Boat::~Boat() // 리소스를 외부에서 얻은게 없으니 반환 필요가 없음
-{
+//void SortVec(std::vector<int>& nums)
+//{
+//    for (int i = 0; i < nums.size() - 1; ++i)
+//    {
+//        for (int j = i + 1; j < nums.size(); ++j)
+//        {
+//            if (nums[i] > nums[j])
+//            {
+//                int temp = nums[i];
+//                nums[i] = nums[j];
+//                nums[j] = temp;
+//            }
+//        }
+//    }
+//    for (int i = 0; i < nums.size(); ++i)
+//    {
+//        std::cout << nums[i] << " " << std::endl;
+//    }
+//}
 
+void SortVec(std::vector<int>& nums)
+{
+    using namespace std;
+
+    for (int i = 0; i < nums.size() - 1; ++i)
+    {
+        int index_x = i;
+
+        for (int j = i + 1; j < nums.size(); ++j)
+        {
+            if (nums[j] < nums[index_x])
+            {
+                index_x = j;
+            }
+        }
+        swap(nums[i], nums[index_x]);
+    } 
 }
 
 
-class Ocean
+
+int main(void)
 {
-public:
-	Ocean();
-	Ocean(const Ocean&);
-	Ocean(int x_size, int y_size, int num_boats);
-	~Ocean();
-private:
-	int x_size;
-	int y_size;
-	int* grid;
-	Boat* boats;
-	int num_boats;
+    srand(time(NULL));
+    // 벡터 컨테이너에 담겨진 수들을 오름차순으로 정렬하는 함수 만들기
 
-};
+    std::vector<int> nums;
 
-int main()
-{
+    int maxCount = 5;
+    //int randCount = rand() % maxCount + 1;
+    int randCount = 20;
+    for (int i = 0; i < randCount; ++i)
+    {
+        int randomValue = rand() % (maxCount * 2) - maxCount;
+        nums.push_back(randomValue);
+    }
 
-}
-// 생성자에서만 ':'가 쓰임
-// 생성자의 {} 구현 부분을 호출하기전에 미리 값을 초기화 할 수 있다.
-Ocean::Ocean()
-{
-	x_size = 0;
-	y_size = 0;
-	num_boats = 0;
+    std::cout << "정렬 전 배열: \n";
+    PrintVec(nums);
 
-	grid = nullptr;
-	boats = nullptr;
-}
-
-Ocean::Ocean(const Ocean& ocean)
-{
-	x_size = ocean.x_size;
-	y_size = ocean.y_size;
-	num_boats = ocean.num_boats;
-
-	grid = new int[x_size * y_size];
-
-	for (int i = 0; i < x_size * y_size; ++i)
-	{
-		grid[i] = ocean.grid[i];
-	}
-
-	boats = new Boat[num_boats];
-
-	for (int i = 0; i < num_boats; ++i)
-	{
-		boats[i] = ocean.boats[i];
-	}
-
-}
-
-Ocean::Ocean(int xsize, int ysize, int boat_count)
-{
-	x_size = xsize;
-	y_size = ysize;
-	num_boats = boat_count;
-
-	grid = new int[x_size * y_size];
-	boats = new Boat[num_boats];
-}
-
-Ocean::~Ocean()
-{
-	delete[] grid;
-	delete[] boats;
+    std::cout << "정렬 후 배열: \n";
+    SortVec(nums);
+    PrintVec(nums);
 }
