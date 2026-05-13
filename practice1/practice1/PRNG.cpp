@@ -6,14 +6,17 @@
 /* number and carry packed within the same 32 bit integer.              */
 /************************************************************************/
 
-namespace HLP2 {
-  namespace Utils {
+namespace HLP2
+{
+  namespace Utils
+  {
   
-      // return a random float >= 0 and < 1
-    static unsigned int SEED_X = 521'288'629;
-    static unsigned int SEED_Y = 362'436'069;
+      /* return a random float >= 0 and < 1 */
+    static unsigned int SEED_X = 521288629;
+    static unsigned int SEED_Y = 362436069;
     
-    unsigned rand() {
+    unsigned rand(void)
+    {
       /* Use any pair of non-equal numbers from this list for "a" and "b"
           18000 18030 18273 18513 18879 19074 19098 19164 19215 19584
           19599 19950 20088 20508 20544 20664 20814 20970 21153 21243
@@ -32,14 +35,16 @@ namespace HLP2 {
       return ((SEED_X << 16) + (SEED_Y & 65535));
     }
     
-    void srand(unsigned seed1, unsigned seed2) {
+    void srand(unsigned seed1, unsigned seed2)
+    {
       if (seed1)
         SEED_X = seed1;   /* use default seeds if parameter is 0 */
       if (seed2)
         SEED_Y = seed2;
     }
     
-    int Random(int low, int high) {
+    int Random(int low, int high)
+    {
       int r1 = static_cast<int>( HLP2::Utils::rand() / 2 - 1 );
       return r1 % (high - low + 1) + low;
     }

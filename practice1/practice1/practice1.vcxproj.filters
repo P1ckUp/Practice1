@@ -26,10 +26,10 @@
     <ClCompile Include="ocean.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ocean-driver.cpp">
+    <ClCompile Include="PRNG.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="PRNG.cpp">
+    <ClCompile Include="ocean-driver2.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

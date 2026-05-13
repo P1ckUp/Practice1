@@ -23,7 +23,7 @@
     <ClInclude Include="PRNG.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ocean-driver.cpp" />
+    <ClCompile Include="ocean-driver2.cpp" />
     <ClCompile Include="ocean.cpp" />
     <ClCompile Include="PRNG.cpp" />
   </ItemGroup>
