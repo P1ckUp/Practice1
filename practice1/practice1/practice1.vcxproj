@@ -19,13 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ocean.h" />
-    <ClInclude Include="PRNG.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="ocean-driver.cpp" />
-    <ClCompile Include="ocean.cpp" />
-    <ClCompile Include="PRNG.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>

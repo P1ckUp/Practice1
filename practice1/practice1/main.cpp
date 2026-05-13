@@ -1,187 +1,121 @@
-//#include<iostream>
-//#include<string>
-//
-//class Champions
+#include <iostream>
+#include <vector>
+/*
+현재 최대값 = 첫 번째 값
+
+반복문 시작
+    현재 원소가 최대값보다 크면
+        최대값 갱신
+반복문 끝
+
+최대값 반환
+*/
+int FindMaxValue(const std::vector<int>& nums)
+{
+    int MaxValue = nums[0];
+
+
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        if (nums[i] > MaxValue)
+        {
+            MaxValue = nums[i];
+        }
+    }
+        return MaxValue;
+}
+
+int FindMinValue(const std::vector<int>& nums)
+{
+    int MinValue = nums[0];
+
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        if (nums[i] < MinValue)
+        {
+            MinValue = nums[i];
+        }
+    }
+    return MinValue;
+}
+
+//min과 max를 동시에 구해야됨.
+void FindMinMax(int* max, int* min, const std::vector<int>& nums)
+{
+    int MaxValue = nums[0];
+    int MinValue = nums[0];
+
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        if (nums[i] > MaxValue)
+        {
+            MaxValue = nums[i];
+        }
+        if (nums[i] < MinValue)
+        {
+            MinValue = nums[i];
+        }
+    }
+    //포인터에 값을 넣어줘야됨.
+    *max = MaxValue;
+    *min = MinValue;
+}
+
+//struct MinMax
 //{
-//public:
-//    std::string name;
-//    int level;
-//    int exp;
-//
-//    int hp;
-//    int maxHp;
-//
-//    int mana;
-//    int maxMana;
-//
-//    int attack;
-//    int defense;
-//
-//    bool isDead;
-//
-//    void attackTarget();
-//    void takeDamage(int damage);
-//    void heal(int amount);
+//    int max;
+//    int min;
 //};
 //
-//void PrintChampionsInfo(const Champions& champion)
+//MinMax FindMinMax(const std::vector<int>& nums)
 //{
-//    std::cout << "Name: " << champion.name << std::endl;
-//    std::cout << "HP: " << champion.hp << std::endl;
-//    std::cout << "MP: " << champion.mana << std::endl;
-//    std::cout << "Lv: " << champion.level << std::endl;
-//    std::cout << "Exp: " << champion.exp << std::endl;
-//    std::cout << "ATK: " << champion.attack << std::endl;
-//    std::cout << "DEF: " << champion.defense << std::endl;
-//    std::cout << "Alive: " << (champion.isDead ? "No" : "Yes") << std::endl;
-//}
+//    MinMax Result;
+//    int MaxValue = nums[0];
+//    int MinValue = nums[0];
 //
-//void Champions::attackTarget()
-//{
-//    if (isDead)
+//    for (int i = 0; i < nums.size(); ++i)
 //    {
-//        std::cout << name << ": Champion is dead." << std::endl;
-//        return;
+//        if (MaxValue < nums[i])
+//        {
+//            MaxValue = nums[i];
+//        }
+//        if (MinValue > nums[i])
+//        {
+//            MinValue = nums[i];
+//        }
 //    }
-//    std::cout << name << " attacked " << attack << " Damage." << std::endl;
-//}
+//    Result.max = MaxValue;
+//    Result.min = MinValue;
 //
-//void Champions::takeDamage(int damage)
-//{
-//    int Result_Damage = damage - defense;
-//
-//    if(Result_Damage <= 0)
-//    {
-//        Result_Damage = 0;
-//        std::cout << "Damage Miss!" << std::endl;
-//    }
-//    hp = hp - Result_Damage;
-//
-//    if (hp <= 0)
-//    {
-//        hp = 0;
-//        isDead = true;
-//
-//        std::cout << name << " is dead." << std::endl;
-//        return;
-//    }
-//
-//    std::cout << name << "is took damage!" << std::endl;
-//    std::cout << "Damage: " << Result_Damage << std::endl;
-//    std::cout << "HP: " << hp << std::endl;
-//}
-//
-//void Champions::heal(int amount)
-//{
-//    hp += amount;
-//
-//    if(isDead)
-//    {
-//        std::cout << name << " is alreay Dead. Cannot be healed." << std::endl;
-//        return;
-//    }
-//
-//    if (hp > maxHp)
-//    {
-//        hp = maxHp;
-//    }
-//    std::cout << name << " got a "<< amount <<" heal." << std::endl;
-//    std::cout << "HP: " << hp << std::endl;
-//}
-//
-//
-//
-//int main()
-//{
-//    Champions Hero;
-//
-//    Hero.level = 1;
-//    Hero.exp = 0;
-//
-//    Hero.hp = 500;
-//    Hero.maxHp = 800;
-//
-//    Hero.mana = 300;
-//    Hero.maxMana = 300;
-//
-//    Hero.attack = 20;
-//    Hero.defense = 15;
-//
-//    Hero.isDead = false;
-//
-//    PrintChampionsInfo(Hero);
-//
-//    Hero.takeDamage(30);
-//    Hero.heal(50);
-//    Hero.attackTarget();
-//
-//    PrintChampionsInfo(Hero);
-//
-//    return 0;
+//    return Result;
 //}
 
-#include <string>
-#include <iostream>
-
-struct TestCase
-{
-    std::string str; // 테스트 할 문자열
-    int expectedWordCount; // 실제 이 문자열에 단어의 갯수 
-};
-
-int CountWord(const std::string &text)      //wordcount의 함수
-{
-    int count = 0;
-    bool is_word = false;
-    
-    for (int i = 0;i < text.length(); ++i)
-    {
-        if (is_word == false)
-        {
-            if (text[i] != ' ')     //문자가 존재하면
-            {                       //
-                count++;            //카운트를 1개 증가시키고
-                is_word = true;     //
-            }
-        }
-
-        if (text[i] == ' ')         
-        {
-            is_word = false;
-        }
-
-    }
-    return count;
-};
 
 int main(void)
 {
-    int testSize = 6;
-    TestCase tests[] =
+    // 동적 배열 벡터를 만든다. 빈 컨테이너임.
+    std::vector<int> nums;
+
+    // 몇 개 숫자를 컨테이너에 넣을 건지 랜덤으로 정한다. max는 99개다. 
+    int randCount = rand() % 100;
+
+    // randCount까지 하나씩 하니씩 랜덤한 값을 만들어서 컨테이너에 넣는다
+    for (int i = 0; i < randCount; ++i)
     {
-        {"I am counting my calories, yet I really want dessert.", 10},
-        {"Had he known what was going to happen, he would have never stepped into the shower.", 16},
-        {"He didn't heed the warning and it had turned out surprisingly well.", 12},
-        {"     He didn't heed the warning and it had turned out surprisingly well.", 12},
-        {"He    didn't     heed the       warning       and it had       turned out surprisingly well.", 12},
-        {"He    didn't     heed the       warning       and it had       turned out surprisingly well.         ", 12}
-    };
-
-    int passTest = 0;
-
-    for (int i = 0; i < testSize; ++i)
-    {
-        //word
-        int wordCount = CountWord(tests[i].str); // <--- 여러분들이 작성해야하는 코드,, 함수로 만들어서 해주세요!!
-
-
-
-        if (wordCount == tests[i].expectedWordCount)
-        {
-            passTest++;
-        }
-        std::cout << "Test" << i + 1 << " : " << wordCount << ", expecting " << tests[i].expectedWordCount << std::endl;
+        // [0, 1999] --> [-1000, 999]
+        int randomValue = rand() % 2000 - 1000;
+        nums.push_back(randomValue);
     }
 
-    std::cout << "Test Result: " << passTest << "/" << testSize << std::endl;
+    int min1 = FindMaxValue(nums);
+    int max1 = FindMinValue(nums);
+
+    std::cout << "Min value: " << min1 << ", Max value: " << max1 << std::endl;
+
+    int min, max;
+
+    FindMinMax(min, max);
+
+    std::cout << "Min value: " << min << ", Max value: " << max << std::endl;
+
 }
