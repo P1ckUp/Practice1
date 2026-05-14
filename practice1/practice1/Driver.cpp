@@ -3,71 +3,63 @@
 \file   Driver.cpp
 \author Matt Casanova 
 \brief  
-  This is the driver for Quiz3  
+  This is the driver for Quiz4 
   
 */
 /******************************************************************************/
 #include <iostream>
 #include <cstdlib>
 
-#include "Quiz3.h"
+#include "Quiz4.h"
 
-static void PrintList(const Quiz3::Node* pList)
-{
-  while(pList)
-  {
-    std::cout << pList->data << " ";
-    pList = pList->pNext;
-  }
-  std::cout << std::endl;
-}
+
 
 void TestList(int count)
 {
-  std::cout << "Test " << count << " Nodes *********************************\n";
-  Quiz3::Node* pList = 0;
+  std::cout << "Test " << count << " Nodes *********************************";
+  Quiz4::List list;
   
-  PrintList(pList);
+  std::cout << list << std::endl;
   
   for(int i = 0; i < count; ++i)
-    Quiz3::AddToFront(pList, i);
+    list.AddToFront(i);
     
-  PrintList(pList);
-  
-  FreeList(pList);
-  pList = 0;
-  
+  std::cout << list << std::endl << std::endl;
+   
 }
 void TestFind(int start, int end, int value)
 {
   std::cout << "Test Finding " << value << "********************************\n";
-  Quiz3::Node* pList = 0;
+  Quiz4::List list;
   
   for(int i = start; i < end; ++i)
-    Quiz3::AddToFront(pList, i);
+    list.AddToFront(i);
     
-  const Quiz3::Node* pFind = Quiz3::FindNode(pList, value);
+  const Quiz4::List& listRef = const_cast<const Quiz4::List&>(list);
+
+  const Quiz4::Node* pFind = listRef.FindNode(value);
   
   if(pFind != 0)
     std::cout << value << " Found\n";
   else
     std::cout << value << " Not Found\n";
   
-  FreeList(pList);
-  pList = 0;
-  
 }
 int main(void)
 {
-  TestList(2);
+  TestList(0);
+  TestList(1);
+  TestList(3);
   TestList(10);
-  TestList(1000);
+  TestList(100);
   
-  TestFind(0, 10, 0);
-  TestFind(5, 1000, 999);
-  TestFind(30, 40, 40);
-  TestFind(0, 10000, 9845);
-  TestFind(2000, 10000, 5);
+  TestFind(1, 10, 1);
+  TestFind(1, 10, 9);
+  TestFind(1, 10, 0);
+  TestFind(1, 10, 10);
+  TestFind(1, 10, 5);
+  TestFind(1, 10, 15);
+
   
   return 0;
 }
