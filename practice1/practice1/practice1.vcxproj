@@ -19,9 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< Updated upstream
-    <ClCompile Include="main.cpp" />
-=======
+
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="Quiz1.cpp" />
   </ItemGroup>
@@ -30,7 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Quiz1.h" />
->>>>>>> Stashed changes
+
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
