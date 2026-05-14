@@ -56,6 +56,29 @@ namespace Quiz4
         m_pHead = 0;
     }
 
+    const Quiz4::Node* List::FindMax(void) const
+    {
+        Node* Max;
+
+        return 0;
+    }
+
+    void List::SwapLists(List & rhs)
+    {
+        Node* dump_list;
+
+        dump_list = m_pHead;
+        m_pHead = rhs.m_pHead;
+        rhs.m_pHead = dump_list;
+
+    }
+
+    int List::Count(void) const
+    {
+
+        return 0;
+    }
+
     List::~List()
     {
         while (m_pHead != nullptr)
@@ -65,6 +88,5 @@ namespace Quiz4
             m_pHead = free_temp;
         }
     }
-
 }
 
