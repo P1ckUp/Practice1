@@ -65,12 +65,6 @@ void TestFind(int start, int end, int value)
   void TestMax(int nums)
   {
       Quiz4::List list;
-      int max_num = 0;
-
-      for (int i = 0; i < nums; i++)
-      {
-
-      }
 
   }
 

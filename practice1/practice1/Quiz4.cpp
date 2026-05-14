@@ -58,7 +58,13 @@ namespace Quiz4
 
     const Quiz4::Node* List::FindMax(void) const
     {
-        Node* Max;
+        Node* max_num;
+        
+
+        for (int i = 0; i < ; i++)
+        {
+            if( >)
+        }
 
         return 0;
     }
