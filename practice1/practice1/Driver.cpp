@@ -3,46 +3,71 @@
 \file   Driver.cpp
 \author Matt Casanova 
 \brief  
-  This is the driver for Quiz1  
+  This is the driver for Quiz3  
   
 */
 /******************************************************************************/
 #include <iostream>
-#include "Quiz2.h"
+#include <cstdlib>
 
-void TestHelloWorld(void)
+#include "Quiz3.h"
+
+static void PrintList(const Quiz3::Node* pList)
 {
-  Quiz2::HelloWorld(0);
-  std::cout << std::endl;
-  Quiz2::HelloWorld(5);
-  std::cout << std::endl;
-  Quiz2::HelloWorld(20);
-  std::cout << std::endl;
-  Quiz2::HelloWorld(1000);
-  std::cout << std::endl;
-  Quiz2::HelloWorld(-1);//Shouldn't print
+  while(pList)
+  {
+    std::cout << pList->data << " ";
+    pList = pList->pNext;
+  }
   std::cout << std::endl;
 }
-void TestSwap(void)
+
+void TestList(int count)
 {
-  const int SIZE = 10;
-
-  int arr1[SIZE] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-  int arr2[SIZE] = {-1, -2, -3, -4, -5, -6, -7, -8, -9, -10};
-
-  for(int i = 0; i < SIZE; ++i)
-  {
-    std::cout << "x = " << arr1[i] << " y = " << arr2[i] << std::endl;
-    Quiz2::Swap(arr1[i], arr2[i]);
-    std::cout << "x = " << arr1[i] << " y = " << arr2[i] << std::endl << std::endl;
-  }  
-
+  std::cout << "Test " << count << " Nodes *********************************\n";
+  Quiz3::Node* pList = 0;
   
+  PrintList(pList);
+  
+  for(int i = 0; i < count; ++i)
+    Quiz3::AddToFront(pList, i);
+    
+  PrintList(pList);
+  
+  FreeList(pList);
+  pList = 0;
+  
+}
+void TestFind(int start, int end, int value)
+{
+  std::cout << "Test Finding " << value << "********************************\n";
+  Quiz3::Node* pList = 0;
+  
+  for(int i = start; i < end; ++i)
+    Quiz3::AddToFront(pList, i);
+    
+  const Quiz3::Node* pFind = Quiz3::FindNode(pList, value);
+  
+  if(pFind != 0)
+    std::cout << value << " Found\n";
+  else
+    std::cout << value << " Not Found\n";
+  
+  FreeList(pList);
+  pList = 0;
   
 }
 int main(void)
 {
-  TestHelloWorld();
-  TestSwap();
+  TestList(2);
+  TestList(10);
+  TestList(1000);
+  
+  TestFind(0, 10, 0);
+  TestFind(5, 1000, 999);
+  TestFind(30, 40, 40);
+  TestFind(0, 10000, 9845);
+  TestFind(2000, 10000, 5);
+  
   return 0;
 }
