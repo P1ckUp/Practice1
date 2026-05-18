@@ -26,29 +26,26 @@ namespace Quiz4
 
         return os;
     }
-
-    void List::AddToFront(int i)
+    void List::AddToFront(int count)
     {
         Node* newNode = new Node();
-
-        newNode->data = i;
+        newNode->data = count;
         newNode->pNext = m_pHead;
-
         m_pHead = newNode;
     }
-
-    const Quiz4::Node* List::FindNode(int value) const
+    const Node* List::FindNode(int value) const
     {
-        const Node* Head = m_pHead;
-// m_pHead 직접 못움직임(const)
-        while (Head != nullptr)
+        const Node* cost = m_pHead;
+        while (cost != 0)
         {
-            if (Head->data == value)
+            if (cost->data == value)
             {
-                return Head;
+                return cost;
             }
-             Head = Head->pNext;
-        }return nullptr;
+            cost = cost->pNext;
+        }
+
+        return 0;
     }
 
     List::List()
@@ -56,43 +53,10 @@ namespace Quiz4
         m_pHead = 0;
     }
 
-    const Quiz4::Node* List::FindMax(void) const
-    {
-        Node* max_num;
-        
-
-        for (int i = 0; i < ; i++)
-        {
-            if( >)
-        }
-
-        return 0;
-    }
-
-    void List::SwapLists(List & rhs)
-    {
-        Node* dump_list;
-
-        dump_list = m_pHead;
-        m_pHead = rhs.m_pHead;
-        rhs.m_pHead = dump_list;
-
-    }
-
-    int List::Count(void) const
-    {
-
-        return 0;
-    }
-
     List::~List()
     {
-        while (m_pHead != nullptr)
-        {
-            Node* free_temp = m_pHead->pNext;
-            delete m_pHead;
-            m_pHead = free_temp;
-        }
+        delete m_pHead;
     }
+
 }
 
