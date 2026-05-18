@@ -55,7 +55,12 @@ namespace Quiz4
 
     List::~List()
     {
-        delete m_pHead;
+        while (m_pHead != nullptr)
+        {
+            Node* freetemp = m_pHead->pNext;
+            delete m_pHead;
+            m_pHead = freetemp;
+        }
     }
 
 }
