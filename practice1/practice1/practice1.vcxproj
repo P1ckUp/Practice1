@@ -19,11 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Quiz4.h" />
+    <ClCompile Include="Driver.cpp" />
+    <ClCompile Include="Quiz6.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Driver.cpp" />
-    <ClCompile Include="Quiz4.cpp" />
+    <Text Include="Output.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Quiz6.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>

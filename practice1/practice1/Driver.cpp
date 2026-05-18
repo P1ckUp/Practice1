@@ -3,63 +3,55 @@
 \file   Driver.cpp
 \author Matt Casanova 
 \brief  
-  This is the driver for Quiz4 
+  This is the driver for Quiz5
   
 */
 /******************************************************************************/
 #include <iostream>
-#include <cstdlib>
+#include "Quiz6.h"
 
-#include "Quiz4.h"
+// 1. 글로벌 함수로 오버로딩
+// 2. 
 
-
-
-void TestList(int count)
-{
-  std::cout << "Test " << count << " Nodes *********************************";
-  Quiz4::List list;
-  
-  std::cout << list << std::endl;
-  
-  for(int i = 0; i < count; ++i)
-    list.AddToFront(i);
-    
-  std::cout << list << std::endl << std::endl;
-   
-}
-void TestFind(int start, int end, int value)
-{
-  std::cout << "Test Finding " << value << "********************************\n";
-  Quiz4::List list;
-  
-  for(int i = start; i < end; ++i)
-    list.AddToFront(i);
-    
-  const Quiz4::List& listRef = const_cast<const Quiz4::List&>(list);
-
-  const Quiz4::Node* pFind = listRef.FindNode(value);
-  
-  if(pFind != 0)
-    std::cout << value << " Found\n";
-  else
-    std::cout << value << " Not Found\n";
-  
-}
 int main(void)
 {
-  TestList(0);
-  TestList(1);
-  TestList(3);
-  TestList(10);
-  TestList(100);
+  Quiz6::Vector2 first(1.0, 1.0);
+  Quiz6::Vector2 second(2.0, 2.0);
   
-  TestFind(1, 10, 1);
-  TestFind(1, 10, 9);
-  TestFind(1, 10, 0);
-  TestFind(1, 10, 10);
-  TestFind(1, 10, 5);
-  TestFind(1, 10, 15);
+  Quiz6::Vector2 result;
+  
+  const Quiz6::Vector2 const1(2.0, 2.0);
+  const Quiz6::Vector2 const2(2.0, 2.0);
 
+  //Test non const +
+  std::cout << "Test Non Const +" << std::endl;
+  result = first + second;
+  std::cout << result << std::endl;
+  
+  //Test const +
+  std::cout << "Test Const +" << std::endl;
+  result = const1 + const2;
+  std::cout << result << std::endl;
+  
+  //Test += 
+  std::cout << "Test += with const" << std::endl;
+  first += const1;
+  std::cout << first << std::endl;
+  
+  //Test += Chain
+  std::cout << "Test += Chain" << std::endl;
+  first += second += const1;
+  std::cout << first << std::endl;
+  std::cout << second << std::endl;
+  
+  std::cout << "Test vector * float" << std::endl;
+  result = const1 * 2.0;
+  std::cout << result << std::endl;
+  
+  std::cout << "Test float * vector" << std::endl;
+  result = 2.0 * const2;
+  std::cout << result << std::endl;
+  
   
   return 0;
 }
